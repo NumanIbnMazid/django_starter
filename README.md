@@ -52,7 +52,8 @@ Django Starter is a simple Skeleton to start with a Django project.
 - [x] Standard Project Structure
 - [x] Example Landing Page using Bootstrap 5
 - [ ] Setup script
-- [ ] Dockerize
+- [ ] Dockerized
+- [ ] I18N Support
 
 ## Author
 
