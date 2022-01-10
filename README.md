@@ -23,7 +23,7 @@ Django Starter is a simple Skeleton for Django Project to start with.
 
    - Run `pip install -r requirements.txt`, this will install all the required dependencies.
 
-     Please choose to (w)ipe if you asked for this:
+     Please choose to (w)ipe if asked for this:
 
      ````
      The plan is to install the git repository https://github.com/XXXXXXXXXXXXXXXXXXXXXXXXXX
