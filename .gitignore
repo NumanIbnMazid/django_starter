@@ -6,8 +6,8 @@
 __pycache__
 db.sqlite3
 db.sqlite3-journal
-project.db
-project.db-journal
+project.db.sqlite3
+project.db.sqlite3-journal
 static/
 media/
 /public/static/
