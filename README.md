@@ -2,7 +2,7 @@
 
 ## Description
 
-Django Starter is a simple Skeleton for Django Project to start with.
+Django Starter is a simple Skeleton to start with a Django project.
 
 ## Installation
 
@@ -14,7 +14,7 @@ Django Starter is a simple Skeleton for Django Project to start with.
 - [pip](https://pip.pypa.io/en/stable/installation/) or [poetry](https://python-poetry.org/docs/#installation)
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-## Easy installation
+### Setup Process
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
