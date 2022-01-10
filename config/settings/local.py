@@ -4,7 +4,7 @@ from .base import *
 # *** Allowed Hosts ***
 # ----------------------------------------------------
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(" ")
+ALLOWED_HOSTS = ['*']
 
 # ----------------------------------------------------
 # *** Databases ***
@@ -42,7 +42,7 @@ INSTALLED_APPS.extend(["whitenoise.runserver_nostatic"])
 if not "whitenoise.middleware.WhiteNoiseMiddleware" in MIDDLEWARE:
     # Must insert after SecurityMiddleware
     MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
-    
+
 # forever-cacheable files and compression support
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -52,7 +52,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 if not "debug_toolbar" in INSTALLED_APPS:
     INSTALLED_APPS.append("debug_toolbar")
-    
+
 if not "debug_toolbar.middleware.DebugToolbarMiddleware" in MIDDLEWARE:
     MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
 
