@@ -35,6 +35,8 @@ Django Starter is a simple Skeleton for Django Project to start with.
 
         * Run `poetry install`, this will install all the required dependencies.
 
+    <p style='color:#7a403c; font-size:15px;'>[N:B: Replace <b>`python`</b> with <b>`poetry run python`</b> if using poetry. For example: <b>`poetry run python manage.py runserver`</b>]</p>
+
 4. Create a `.env` file and provide required environment variables using the template `.env.example`
 5. Run `python manage.py makemigrations` and `python manage.py migrate`, this will create the database tables
 6. Run `python manage.py collectstatic`, this will collect all static files
