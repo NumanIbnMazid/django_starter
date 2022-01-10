@@ -27,6 +27,9 @@ with open(DEFAULT_ENV_FILE, "w") as f:
     for key, value in key_values.items():
         if key == 'SECRET_KEY':
             value = get_random_secret_key()
+        elif key == 'DATABASE_URL' and len(value.strip()) < 1:
+            # skip if Database URL is not set
+            continue
         else:
             value = value.strip() if len(value.strip()) >= 1 else ""
         try:
