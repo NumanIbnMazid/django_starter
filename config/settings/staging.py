@@ -10,7 +10,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(" ")
 # *** Databases ***
 # ----------------------------------------------------
 
-DATABASES = {'default': env.db('DATABASE_URL')}
+DATABASES = {'default': get_env_value('DATABASE_URL')}
 
 # ----------------------------------------------------
 # *** Debug ***

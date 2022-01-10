@@ -10,7 +10,8 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(" ")
 # *** Databases ***
 # ----------------------------------------------------
 
-DATABASES = {'default': env.db('DATABASE_URL')}
+if os.environ.get('DATABASE_URL') is not None:
+    DATABASES = {'default': env.db('DATABASE_URL')}
 
 # remove sslmode for local development
 options = DATABASES['default'].get('OPTIONS', {})

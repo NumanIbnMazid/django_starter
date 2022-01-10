@@ -6,6 +6,8 @@
 __pycache__
 db.sqlite3
 db.sqlite3-journal
+project.db
+project.db-journal
 static/
 media/
 /public/static/
@@ -37,7 +39,7 @@ ipython_config.py
 # C extensions
 *.so
 
-# Backup files # 
+# Backup files #
 *.bak
 
 # Python #
@@ -105,7 +107,7 @@ celerybeat.pid
 # Rope project settings
 .ropeproject
 
-# Environments 
+# Environments
 .env
 .venv
 env/
@@ -117,7 +119,7 @@ venv.bak/
 # mkdocs documentation
 /site
 
-# mypy 
+# mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
@@ -178,3 +180,7 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+
+# ************************************** JavaScript **************************************
+
+node_modules/
