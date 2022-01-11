@@ -1,4 +1,8 @@
-{% load static %}
+{% load static compress %}
+
+{% compress js %}
 
 <script src="{% static 'assets/js/main.js' %}"></script>
 <script src="{% static 'assets/js/custom.js' %}"></script>
+
+{% endcompress %}

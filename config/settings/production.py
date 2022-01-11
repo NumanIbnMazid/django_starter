@@ -11,6 +11,8 @@ ALLOWED_HOSTS = ["mysite.example.com"]
 # ----------------------------------------------------
 
 DATABASES = {'default': get_env_value('DATABASE_URL')}
+# set atomic requests
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # ----------------------------------------------------
 # *** Debug ***

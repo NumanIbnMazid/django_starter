@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # "django.contrib.humanize", # Handy template tags
 ] + THIRD_PARTY_APPS + LOCAL_APPS
 
 # ----------------------------------------------------
@@ -107,6 +108,15 @@ TEMPLATES = [
 # *** Authentication Definition ***
 # ----------------------------------------------------
 
+# https://docs.djangoproject.com/en/dev/ref/settings/#password-hashers
+PASSWORD_HASHERS = [
+    # https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -123,6 +133,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # ----------------------------------------------------
+# *** Email Configuration ***
+# ----------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = env.str(
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.smtp.EmailBackend",
+)
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
+EMAIL_TIMEOUT = 5
+
+# ----------------------------------------------------
 # *** Internationalization ***
 # ----------------------------------------------------
 
@@ -131,10 +153,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
 # ----------------------------------------------------
 # *** Other Definition ***
 # ----------------------------------------------------
 
+SITE_ID = 1
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -144,6 +169,34 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # One month
 HOME_URL = "/"
 ADMIN_LOGIN_URL = "/admin/login"
 LOGIN_URL = ADMIN_LOGIN_URL
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
+# FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
+
+# FIXTURES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
+# FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
+
+# SECURITY
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
+SESSION_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
+CSRF_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
+SECURE_BROWSER_XSS_FILTER = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
+X_FRAME_OPTIONS = "DENY"
+
+# ADMIN
+# ------------------------------------------------------------------------------
+# Django Admin URL.
+ADMIN_URL = "admin/"
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [("""Numan Ibn Mazid""", "numanibnmazid@gmail.com")]
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
 
 # ----------------------------------------------------
 # *** Static and Media Files Configuration ***
@@ -159,3 +212,16 @@ STATIC_URL = env.str('STATIC_URL', default='static/')
 STATICFILES_DIRS = [
     os.path.join(public_root, 'staticfiles'),
 ]
+
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+# ----------------------------------------------------
+# *** Django Compressor ***
+# ----------------------------------------------------
+
+INSTALLED_APPS += ["compressor"]
+STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]

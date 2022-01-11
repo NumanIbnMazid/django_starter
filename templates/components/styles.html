@@ -1,11 +1,13 @@
-{% load static %}
+{% load static compress %}
+
+{% compress css %}
 
 <!-- Favicons -->
 <link rel='shortcut icon' type='image/x-icon' href="{% static 'assets/brand/django.png' %}" />
 <link rel='apple-touch-icon' href="{% static 'assets/brand/django.png' %}" />
 
 <!-- Bootstrap core CSS -->
-<link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'vendors/bootstrap-5.0.2/css/bootstrap.min.css' %}" rel="stylesheet">
 
 <style>
     .bd-placeholder-img {
@@ -27,3 +29,5 @@
 <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 <!-- Custom styles -->
 <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet">
+
+{% endcompress %}

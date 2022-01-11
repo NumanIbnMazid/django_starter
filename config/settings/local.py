@@ -16,6 +16,8 @@ if os.environ.get('DATABASE_URL') is not None:
 # remove sslmode for local development
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)
+# set atomic requests
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # ----------------------------------------------------
 # *** Debug ***
@@ -64,3 +66,33 @@ if DEBUG:
     import socket
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + INTERNAL_IPS
+
+
+# ----------------------------------------------------
+# *** LOGGING ***
+# ----------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#logging
+# See https://docs.djangoproject.com/en/dev/topics/logging for more details on how to customize logging configuration.
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s "
+            "%(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        }
+    },
+    "root": {
+        "level": "INFO",
+        "handlers": ["console"]
+    }
+}

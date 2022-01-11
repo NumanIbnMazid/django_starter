@@ -1,6 +1,9 @@
-{% load static %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="{{ LANGUAGE_CODE }}" class="h-100">
 
 <head>
 
@@ -32,12 +35,22 @@
     <!-- additional styles block -->
     {% block additional_styles %}{% endblock %}
 
+    <!--
+        ======================================
+        *** head scripts ***
+        ======================================
+    -->
+    {% include "components/head-scripts.html" %}
+
+    <!-- additional head scripts block -->
+    {% block additional_head_scripts %}{% endblock %}
+
 </head>
 
 <body class="d-flex h-100 text-center text-white bg-dark">
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        
+
         <!--
             ======================================
             *** header ***
