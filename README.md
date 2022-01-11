@@ -22,8 +22,7 @@ Django Starter is a simple Skeleton to start with a Django project.
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
-3. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
-4. Install the required dependencies.
+3. Install the required dependencies.
 
    - Install Dependencies Using Pip
 
@@ -43,7 +42,7 @@ Django Starter is a simple Skeleton to start with a Django project.
     ```diff
     ![N:B: Replace `python` with `poetry run python` if using poetry. For example: `poetry run python manage.py runserver`]
     ```
-
+4. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
 5. Run `python manage.py makemigrations` and `python manage.py migrate`, this will create the database tables
 6. Run `python manage.py collectstatic`, this will collect all static files
 7. Run `python manage.py runserver`
