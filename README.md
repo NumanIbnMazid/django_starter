@@ -4,6 +4,17 @@
 
 Django Starter is a simple Skeleton to start with a Django project.
 
+## Features
+
+- [x] Easy Installation
+- [x] Standard Project Structure
+- [x] Example Landing Page using Bootstrap 5
+- [x] Caching Support
+- [ ] Setup script
+- [x] Dockerized
+- [x] Management Commands
+- [ ] I18N Support
+
 ## Installation
 
 ### Requirements
@@ -18,7 +29,12 @@ Django Starter is a simple Skeleton to start with a Django project.
 
 ### Setup Process
 
-#### [Using Traditional Approach]
+### Installation Methods
+
+1. [Using Treditional Approach](#using-traditional-approach)
+2. [Using Docker](#using-docker)
+
+#### 1. Using Traditional Approach
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
@@ -52,24 +68,13 @@ Django Starter is a simple Skeleton to start with a Django project.
 - Optional: Create Django Superuser with management command `python manage.py initiate_admin`
 - Optional: Configure site information with management command `python manage.py initiate_site`
 
-#### [Using Docker]
+#### 2. Using Docker
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
 3. Create a `.env` file and provide required environment variables using the template `.env.example`. Django SECRET_KEY can be generated from [djecrety.ir](https://djecrety.ir/)
 4. Run command `docker-compose up` to start the project.
 5. Open the app on browser by navigating the url `http://localhost:8000`
-
-## Features
-
-- [x] Easy Installation
-- [x] Standard Project Structure
-- [x] Example Landing Page using Bootstrap 5
-- [x] Caching Support
-- [ ] Setup script
-- [x] Dockerized
-- [x] Management Commands
-- [ ] I18N Support
 
 ## Author
 
