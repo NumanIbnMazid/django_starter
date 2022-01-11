@@ -185,10 +185,10 @@ LOGIN_URL = ADMIN_LOGIN_URL
 public_root = root.path('public/')
 
 MEDIA_ROOT = public_root('media')
-MEDIA_URL = env.str('MEDIA_URL', default='media/')
+MEDIA_URL = env.str('MEDIA_URL', default='/media/')
 
 STATIC_ROOT = public_root('static')
-STATIC_URL = env.str('STATIC_URL', default='static/')
+STATIC_URL = env.str('STATIC_URL', default='/static/')
 STATICFILES_DIRS = [
     os.path.join(public_root, 'staticfiles'),
 ]
@@ -248,3 +248,14 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 INSTALLED_APPS += ["compressor"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
+
+
+# ----------------------------------------------------
+# *** Django Cors Headers ***
+# ----------------------------------------------------
+
+if not "corsheaders" in INSTALLED_APPS:
+    INSTALLED_APPS += ["corsheaders"]
+
+if not "corsheaders.middleware.CorsMiddleware" in MIDDLEWARE:
+    MIDDLEWARE.insert(0, "corsheaders.middleware.CorsMiddleware")

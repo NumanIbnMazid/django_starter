@@ -16,9 +16,12 @@ Django Starter is a simple Skeleton to start with a Django project.
 
 ### Setup Process
 
+#### Using Traditional Approach
+
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
-3. Install the required dependencies.
+3. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
+4. Install the required dependencies.
 
    - Install Dependencies Using Pip
 
@@ -39,12 +42,19 @@ Django Starter is a simple Skeleton to start with a Django project.
     ![N:B: Replace `python` with `poetry run python` if using poetry. For example: `poetry run python manage.py runserver`]
     ```
 
-4. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
 5. Run `python manage.py makemigrations` and `python manage.py migrate`, this will create the database tables
 6. Run `python manage.py collectstatic`, this will collect all static files
 7. Run `python manage.py runserver`
     this should start the project on port 8000.
 8. Open the app on browser by navigating the url `http://127.0.0.1:8000`
+
+#### Using Docker
+
+1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
+2. Go into the new directory: `cd django_starter`
+3. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
+4. Run command `docker-compose up` to start the project.
+5. Open the app on browser by navigating the url `http://127.0.0.1:8000`
 
 ## Features
 
@@ -53,7 +63,7 @@ Django Starter is a simple Skeleton to start with a Django project.
 - [x] Example Landing Page using Bootstrap 5
 - [x] Caching Support
 - [ ] Setup script
-- [ ] Dockerized
+- [x] Dockerized
 - [ ] I18N Support
 
 ## Author
