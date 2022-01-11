@@ -31,8 +31,8 @@ Django Starter is a simple Skeleton to start with a Django project.
 
 ### Installation Methods
 
-1. [Using Treditional Approach](#using-traditional-approach)
-2. [Using Docker](#using-docker)
+1. [Using Treditional Approach](#1-using-traditional-approach)
+2. [Using Docker](#2-using-docker)
 
 #### 1. Using Traditional Approach
 
