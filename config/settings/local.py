@@ -32,41 +32,16 @@ DEBUG = True
 TEMPLATES[0]["DIRS"] = [os.path.join(root.path(), "templates")]
 
 # ----------------------------------------------------
-# *** --------------- Third Party --------------- ***
+# *** CACHES ***
 # ----------------------------------------------------
 
-# ----------------------------------------------------
-# *** Django WhiteNoise ***
-# ----------------------------------------------------
-
-INSTALLED_APPS.extend(["whitenoise.runserver_nostatic"])
-
-if not "whitenoise.middleware.WhiteNoiseMiddleware" in MIDDLEWARE:
-    # Must insert after SecurityMiddleware
-    MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
-
-# forever-cacheable files and compression support
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# ----------------------------------------------------
-# *** Django Debug Toolbar ***
-# ----------------------------------------------------
-
-if not "debug_toolbar" in INSTALLED_APPS:
-    INSTALLED_APPS.append("debug_toolbar")
-
-if not "debug_toolbar.middleware.DebugToolbarMiddleware" in MIDDLEWARE:
-    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
-
-INTERNAL_IPS = [
-    "127.0.0.1", "0.0.0.0", "10.0.2.2"
-]
-
-if DEBUG:
-    import socket
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + INTERNAL_IPS
-
+# https://docs.djangoproject.com/en/dev/ref/settings/#caches
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "",
+    }
+}
 
 # ----------------------------------------------------
 # *** LOGGING ***
@@ -96,3 +71,40 @@ LOGGING = {
         "handlers": ["console"]
     }
 }
+
+
+# ----------------------------------------------------
+# *** --------------- Third Party --------------- ***
+# ----------------------------------------------------
+
+# ----------------------------------------------------
+# *** Django Debug Toolbar ***
+# ----------------------------------------------------
+
+if not "debug_toolbar" in INSTALLED_APPS:
+    INSTALLED_APPS += ["debug_toolbar"]
+
+if not "debug_toolbar.middleware.DebugToolbarMiddleware" in MIDDLEWARE:
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
+# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
+DEBUG_TOOLBAR_CONFIG = {
+    "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
+    "SHOW_TEMPLATE_CONTEXT": True,
+}
+
+INTERNAL_IPS = [
+    "127.0.0.1", "0.0.0.0", "10.0.2.2"
+]
+
+if env.str("USE_DOCKER") == "yes":
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    try:
+        _, _, ips = socket.gethostbyname_ex("node")
+        INTERNAL_IPS.extend(ips)
+    except socket.gaierror:
+        # The node container isn't started (yet?)
+        pass

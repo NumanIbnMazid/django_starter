@@ -178,26 +178,6 @@ LOGIN_URL = ADMIN_LOGIN_URL
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
 # FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
-# SECURITY
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
-SESSION_COOKIE_HTTPONLY = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
-CSRF_COOKIE_HTTPONLY = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
-SECURE_BROWSER_XSS_FILTER = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
-X_FRAME_OPTIONS = "DENY"
-
-# ADMIN
-# ------------------------------------------------------------------------------
-# Django Admin URL.
-ADMIN_URL = "admin/"
-# https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Numan Ibn Mazid""", "numanibnmazid@gmail.com")]
-# https://docs.djangoproject.com/en/dev/ref/settings/#managers
-MANAGERS = ADMINS
-
 # ----------------------------------------------------
 # *** Static and Media Files Configuration ***
 # ----------------------------------------------------
@@ -219,8 +199,51 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-# Django Compressor
+# ----------------------------------------------------
+# *** SECURITY ***
+# ----------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
+SESSION_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
+CSRF_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
+SECURE_BROWSER_XSS_FILTER = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
+X_FRAME_OPTIONS = "DENY"
+
+# ADMIN
 # ------------------------------------------------------------------------------
+# Django Admin URL.
+ADMIN_URL = "admin/"
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [("""Numan Ibn Mazid""", "numanibnmazid@gmail.com")]
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
+
+
+# ----------------------------------------------------
+# *** --------------- Third Party --------------- ***
+# ----------------------------------------------------
+
+# ----------------------------------------------------
+# *** Django WhiteNoise ***
+# ----------------------------------------------------
+
+# http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
+INSTALLED_APPS.extend(["whitenoise.runserver_nostatic"])
+
+if not "whitenoise.middleware.WhiteNoiseMiddleware" in MIDDLEWARE:
+    # Must insert after SecurityMiddleware
+    MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+# forever-cacheable files and compression support
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# ----------------------------------------------------
+# *** Django Compressor ***
+# ----------------------------------------------------
+
 # https://django-compressor.readthedocs.io/en/latest/quickstart/#installation
 
 INSTALLED_APPS += ["compressor"]
