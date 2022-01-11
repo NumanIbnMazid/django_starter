@@ -138,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = env.str(
-    "DJANGO_EMAIL_BACKEND",
+    "EMAIL_BACKEND",
     default="django.core.mail.backends.smtp.EmailBackend",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
