@@ -48,7 +48,7 @@ Django Starter is a simple Skeleton to start with a Django project.
 6. Run `python manage.py collectstatic`, this will collect all static files
 7. Run `python manage.py runserver`
     this should start the project on port 8000.
-8. Open the app on browser by navigating the url `http://localhost:8000/`
+8. Open the app on browser by navigating the url `http://127.0.0.1:8000`
 
 #### [Using Docker]
 
@@ -56,7 +56,7 @@ Django Starter is a simple Skeleton to start with a Django project.
 2. Go into the new directory: `cd django_starter`
 3. Create a `.env` file and provide required environment variables using the template `.env.example` or run `python utils/generate_env.py` to automatically generate the `.env` file.
 4. Run command `docker-compose up` to start the project.
-5. Open the app on browser by navigating the url `http://127.0.0.1:8000`
+5. Open the app on browser by navigating the url `http://localhost:8000`
 
 ## Features
 
