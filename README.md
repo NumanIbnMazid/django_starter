@@ -50,6 +50,9 @@ Django Starter is a simple Skeleton to start with a Django project.
     this should start the project on port 8000.
 8. Open the app on browser by navigating the url `http://127.0.0.1:8000`
 
+- Optional: Create Django Superuser with management command `python manage.py initiate_admin`
+- Optional: Configure site information with management command `python manage.py initiate_site`
+
 #### [Using Docker]
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
@@ -66,6 +69,7 @@ Django Starter is a simple Skeleton to start with a Django project.
 - [x] Caching Support
 - [ ] Setup script
 - [x] Dockerized
+- [x] Management Commands
 - [ ] I18N Support
 
 ## Author

@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "utils", # for utility management
 ]
 
 INSTALLED_APPS = [
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # "django.contrib.humanize", # Handy template tags
 ] + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -169,6 +171,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # One month
 HOME_URL = "/"
 ADMIN_LOGIN_URL = "/admin/login"
 LOGIN_URL = ADMIN_LOGIN_URL
+SITE_DOMAIN = "django-starter"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 # FORM_RENDERER = "django.forms.renderers.TemplatesSetting"

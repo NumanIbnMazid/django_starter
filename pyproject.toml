@@ -15,6 +15,7 @@ django-debug-toolbar = "^3.2.4"
 django-compressor = "^3.1"
 uvicorn = "^0.16.0"
 django-cors-headers = "^3.11.0"
+argon2-cffi = "^21.3.0"
 
 [tool.poetry.dev-dependencies]
 
