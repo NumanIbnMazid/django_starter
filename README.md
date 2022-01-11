@@ -13,10 +13,12 @@ Django Starter is a simple Skeleton to start with a Django project.
 - [Python 3.8.x](http://docs.python-guide.org/en/latest/starting/installation/)
 - [pip](https://pip.pypa.io/en/stable/installation/) or [poetry](https://python-poetry.org/docs/#installation)
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [docker](https://docs.docker.com/engine/install/) (optional)
+- [docker-compose](https://docs.docker.com/compose/install/) (optional)
 
 ### Setup Process
 
-#### Using Traditional Approach
+#### [Using Traditional Approach]
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
@@ -48,7 +50,7 @@ Django Starter is a simple Skeleton to start with a Django project.
     this should start the project on port 8000.
 8. Open the app on browser by navigating the url `http://localhost:8000/`
 
-#### Using Docker
+#### [Using Docker]
 
 1. Clone the git: `git clone https://github.com/NumanIbnMazid/django_starter.git`
 2. Go into the new directory: `cd django_starter`
