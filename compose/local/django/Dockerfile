@@ -6,8 +6,8 @@ FROM python:${PYTHON_VERSION} as python
 # Python build stage
 FROM python as python-build-stage
 
-# or local for local.txt instead of requirements.txt
-ARG BUILD_ENVIRONMENT=requirements
+# Define Build Environment
+ARG BUILD_ENVIRONMENT=local
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -22,9 +22,9 @@ COPY requirements.txt .
 # Upgrade pip to latest version
 RUN python -m pip install --upgrade pip
 
-# Create Python Dependency and Sub-Dependency Wheels.
+# Create Python Dependency and Sub-Dependency Wheels. (could be used ${BUILD_ENVIRONMENT}.txt if use local.txt, production.txt etc.)
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
-    -r ${BUILD_ENVIRONMENT}.txt
+    -r requirements.txt
 
 
 # Python 'run' stage
