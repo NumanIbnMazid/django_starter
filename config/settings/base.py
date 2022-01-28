@@ -35,7 +35,7 @@ BASE_DIR = root()
 try:
     SECRET_KEY = get_env_value('SECRET_KEY')
 except ImproperlyConfigured:
-    # generate random secret key
+    # generate random secret key (N:B: DO NOT DO THIS IN PRODUCTION. Pass except block while in production)
     from django.core.management.utils import get_random_secret_key
     SECRET_KEY = get_random_secret_key()
 
