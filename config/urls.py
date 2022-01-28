@@ -12,11 +12,11 @@ from config.views import HomeView
 
 APP_URL_PATTERNS = [
     # App URL Patterns
+    path('', HomeView.as_view(), name='home'),
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name='home'),
 ] + THIRD_PARTY_URL_PATTERNS + APP_URL_PATTERNS
 
 if settings.DEBUG:

@@ -2,12 +2,14 @@ import os
 import environ
 from django.core.exceptions import ImproperlyConfigured
 
+
 def get_env_value(env_variable):
     try:
         return os.environ[env_variable]
     except KeyError:
         error_msg = 'Set the {} environment variable'.format(env_variable)
         raise ImproperlyConfigured(error_msg)
+
 
 root = environ.Path(__file__) - 3  # get root of the project
 
@@ -30,7 +32,12 @@ BASE_DIR = root()
 # ----------------------------------------------------
 # *** Project's SECRET KEY ***
 # ----------------------------------------------------
-SECRET_KEY = get_env_value('SECRET_KEY')
+try:
+    SECRET_KEY = get_env_value('SECRET_KEY')
+except ImproperlyConfigured:
+    # generate random secret key
+    from django.core.management.utils import get_random_secret_key
+    SECRET_KEY = get_random_secret_key()
 
 # ----------------------------------------------------
 # *** Debug Configuration ***
@@ -46,7 +53,7 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR , 'project.db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'project.db.sqlite3'),
     }
 }
 
@@ -58,7 +65,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "utils", # for utility management
+    "utils",  # for utility management
 ]
 
 INSTALLED_APPS = [
@@ -236,9 +243,12 @@ MANAGERS = ADMINS
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
 INSTALLED_APPS.extend(["whitenoise.runserver_nostatic"])
 
-if not "whitenoise.middleware.WhiteNoiseMiddleware" in MIDDLEWARE:
+if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
     # Must insert after SecurityMiddleware
-    MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1,
+        "whitenoise.middleware.WhiteNoiseMiddleware"
+    )
 
 # forever-cacheable files and compression support
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -257,8 +267,8 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # *** Django Cors Headers ***
 # ----------------------------------------------------
 
-if not "corsheaders" in INSTALLED_APPS:
+if "corsheaders" not in INSTALLED_APPS:
     INSTALLED_APPS += ["corsheaders"]
 
-if not "corsheaders.middleware.CorsMiddleware" in MIDDLEWARE:
+if "corsheaders.middleware.CorsMiddleware" not in MIDDLEWARE:
     MIDDLEWARE.insert(0, "corsheaders.middleware.CorsMiddleware")
